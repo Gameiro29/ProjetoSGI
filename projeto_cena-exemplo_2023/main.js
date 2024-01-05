@@ -10,6 +10,7 @@ const btn_vis = document.getElementById("btn_vis");
 
 // Criar a cena
 let cena = new THREE.Scene();
+cena.background = new THREE.Color("lightgray");
 
 // Criar e posicionar a camara
 let camara = new THREE.PerspectiveCamera(70, 800 / 600, 0.1, 500);
@@ -43,29 +44,40 @@ controlos.addEventListener("change", renderizar);
 
 // Load do modelo 3D -> GLTFLoader
 let carregador = new GLTFLoader();
-carregador.load("./model/vintageDesk.gltf", function (gltf) {
+carregador.load("./model/mesaAnimacao.gltf", function (gltf) {
   cena.add(gltf.scene);
 });
 
 //Configuração de luzes
-const luzAmbiente = new THREE.AmbientLight("lightgreen");
-cena.add(luzAmbiente);
-
-const luzPonto = new THREE.PointLight("white");
+//luz frente
+const luzPonto = new THREE.PointLight("white");  
 luzPonto.position.set(0, 2, 2);
-luzPonto.intensity = 15;
+luzPonto.intensity = 10;
 cena.add(luzPonto);
 // auxiliar visual
-const LightHelper1 = new THREE.PointLightHelper(luzPonto, 0.2);
-cena.add(LightHelper1);
+//const LightHelper1 = new THREE.PointLightHelper(luzPonto, 0.2);
+//cena.add(LightHelper1);
 
-const luzDirecional = new THREE.DirectionalLight("white");
-luzDirecional.position.set(3, 2, 0); //aponta na direção de (0, 0, 0)
-luzDirecional.intensity = 30;
-cena.add(luzDirecional);
+//luz trás
+const luzPonto2 = new THREE.PointLight("white");  
+luzPonto2.position.set(0, 2, -2);
+luzPonto2.intensity = 10;
+cena.add(luzPonto2);
+
+//luz lado direito
+const luzDirecional1 = new THREE.DirectionalLight("white");     
+luzDirecional1.position.set(3, 2, 0); //aponta na direção de (0, 0, 0)
+luzDirecional1.intensity = 15;
+cena.add(luzDirecional1);
 // auxiliar visual
-const LightHelper2 = new THREE.DirectionalLightHelper(luzDirecional, 0.2);
-cena.add(LightHelper2);
+//const LightHelper2 = new THREE.DirectionalLightHelper(luzDirecional1, 0.2);
+//cena.add(LightHelper2);
+
+//luz lado esquerdo
+const luzDirecional2 = new THREE.DirectionalLight("white");     
+luzDirecional2.position.set(-3, 2, 0); //aponta na direção de (0, 0, 0)
+luzDirecional2.intensity = 15;
+cena.add(luzDirecional2);
 
 // Renderizar e animar
 let delta = 0; // tempo desde a última atualização
