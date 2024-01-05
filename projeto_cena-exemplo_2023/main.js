@@ -7,6 +7,7 @@ const btn_material = document.getElementById("btn_material");
 const btn_transparencia = document.getElementById("btn_transparencia");
 const btn_repor = document.getElementById("btn_repor");
 const btn_vis = document.getElementById("btn_vis");
+const canva = document.getElementById("meuCanvas");
 
 // Criar a cena
 let cena = new THREE.Scene();
@@ -20,9 +21,8 @@ camara.position.z = 5;
 camara.lookAt(0, 0, 0);
 
 // Criar e configurar o renderer
-let renderer = new THREE.WebGLRenderer();
+let renderer = new THREE.WebGLRenderer({canvas : canva});
 renderer.setSize(800, 600);
-document.body.appendChild(renderer.domElement);
 
 // Criar Eixos
 let eixos = new THREE.AxesHelper();
