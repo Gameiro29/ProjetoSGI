@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -14,6 +13,18 @@
 
 </head>
 <body class="bg-white text-gray-600 work-sans leading-normal text-base tracking-normal">
+    <script async src="../node_modules/unpkg.com_es-module-shims@1.8.0_dist_es-module-shims.js"></script>
+    <script type="importmap">
+        {
+            "imports": {
+            "three": "../node_modules/three/build/three.module.js",
+            "three/examples/": "../node_modules/three/examples/jsm/"
+            }
+        }
+    </script>
+
+        <script type="module" src="./main.js"></script>
+
     <div class="bg-gray-500 h-6 w-full">
     </div>
     <nav>
@@ -77,6 +88,22 @@
       </nav>
 
       <!--THREE.js-->
+      
+      <div>
+        <canvas id="meuCanvas"></canvas>
+    </div>
+    
+
+    <div>
+        <button id="btn_cor">Mudar cor</button>
+        <button id="btn_material">Mudar material</button>
+        <button id="btn_transparencia">Mudar transparencia</button>
+        <button id="btn_repor">Repor material</button>
+        <button id="btn_vis">Esconder/Mostrar</button>
+    </div>
+
+
+      
 
 
 
