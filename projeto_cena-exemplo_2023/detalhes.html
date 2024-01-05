@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
 	
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:200,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+
 
 </head>
 
@@ -80,22 +82,20 @@
     <!-- Image gallery -->
     <div class="mx-auto mt-6 max-w-2xl sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:gap-x-8 lg:px-8">
       <div class="aspect-h-4 aspect-w-3 hidden overflow-hidden rounded-lg lg:block">
-        <img src="img/image1.png" class="h-full w-full object-cover object-center">
+        <a data-modal-target="default-modal" data-modal-toggle="default-modal"><img src="img/lado.png" class="h-full w-full object-cover object-center hover:opacity-50"></a>
       </div>
       <div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
         <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-          <img src="img/image2.png" class="h-full w-full object-cover object-center">
+          <a data-modal-target="default-modal1" data-modal-toggle="default-modal1"><img src="img/lado2.png" class="h-full w-full object-cover object-center hover:opacity-50"></a>
         </div>
         <div class="aspect-h-2 aspect-w-3 overflow-hidden rounded-lg">
-            <a href="3Dview.html">
-                <img src="img/image3.png" class="h-full w-full object-cover object-center hover:opacity-50">
-            </a>
+          <a data-modal-target="default-modal2" data-modal-toggle="default-modal2"><img src="img/frente.png" class="h-full w-full object-cover object-center hover:opacity-50"></a>
         </div>
       </div>
         <!-- Options -->
         <div class="p-5 lg:row-span-3 lg:mt-0 aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
             <h2 class="sr-only">Product information</h2>
-            <p class="text-3xl tracking-tight text-gray-900">$192</p>
+            <p class="text-3xl tracking-tight text-gray-900">240,99€</p>
             <form class="mt-10 h-full w-full object-cover object-center">
                 <!-- Colors -->
                 <div>
@@ -137,98 +137,18 @@
 
                 <!-- Sizes -->
                 <div class="mt-10">
-                <div class="flex items-center justify-between">
-                    <h3 class="text-sm font-medium text-gray-900">Size</h3>
-                    <a href="#" class="text-sm font-medium text-indigo-600 hover:text-indigo-500">Size guide</a>
+                  <div>
+                    <h3 class="text-sm font-medium text-gray-900">Quantidade</h3>
+                    <input type="text" name="quant" id="quant" class="block w-full my-4 rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0">
+                  </div>
                 </div>
-
-                <fieldset class="mt-4">
-                    <legend class="sr-only">Choose a size</legend>
-                    <div class="grid grid-cols-4 gap-4 sm:grid-cols-8 lg:grid-cols-4">
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-not-allowed bg-gray-50 text-gray-200">
-                        <input type="radio" name="size-choice" value="XXS" disabled class="sr-only" aria-labelledby="size-choice-0-label">
-                        <span id="size-choice-0-label">XXS</span>
-                        <span aria-hidden="true" class="pointer-events-none absolute -inset-px rounded-md border-2 border-gray-200">
-                        <svg class="absolute inset-0 h-full w-full stroke-2 text-gray-200" viewBox="0 0 100 100" preserveAspectRatio="none" stroke="currentColor">
-                            <line x1="0" y1="100" x2="100" y2="0" vector-effect="non-scaling-stroke" />
-                        </svg>
-                        </span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="XS" class="sr-only" aria-labelledby="size-choice-1-label">
-                        <span id="size-choice-1-label">XS</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="S" class="sr-only" aria-labelledby="size-choice-2-label">
-                        <span id="size-choice-2-label">S</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="M" class="sr-only" aria-labelledby="size-choice-3-label">
-                        <span id="size-choice-3-label">M</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="L" class="sr-only" aria-labelledby="size-choice-4-label">
-                        <span id="size-choice-4-label">L</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="XL" class="sr-only" aria-labelledby="size-choice-5-label">
-                        <span id="size-choice-5-label">XL</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="2XL" class="sr-only" aria-labelledby="size-choice-6-label">
-                        <span id="size-choice-6-label">2XL</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    <!-- Active: "ring-2 ring-indigo-500" -->
-                    <label class="group relative flex items-center justify-center rounded-md border py-3 px-4 text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none sm:flex-1 sm:py-6 cursor-pointer bg-white text-gray-900 shadow-sm">
-                        <input type="radio" name="size-choice" value="3XL" class="sr-only" aria-labelledby="size-choice-7-label">
-                        <span id="size-choice-7-label">3XL</span>
-                        <!--
-                        Active: "border", Not Active: "border-2"
-                        Checked: "border-indigo-500", Not Checked: "border-transparent"
-                        -->
-                        <span class="pointer-events-none absolute -inset-px rounded-md" aria-hidden="true"></span>
-                    </label>
-                    </div>
-                </fieldset>
-                </div>
-                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-indigo-600 px-8 py-3 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Add to bag</button>
+                <button type="submit" class="mt-10 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">Adicionar ao Carrinho</button>
+                <a href="3Dview.html" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-800 px-8 py-3 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2">
+                  Visualização 3D 
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mx-2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m21 7.5-9-5.25L3 7.5m18 0-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+                  </svg>
+                </a>
             </form>
         </div>
     </div>
@@ -317,5 +237,118 @@
 </div>
 </div>
 </footer>
+
+<!-- Main modal -->
+<div id="default-modal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(50%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-6xl max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Vista Lateral Direita
+              </h3>
+              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5 space-y-4">
+            <img src="img/lado.png" class="h-full w-full object-cover object-center">
+          </div>
+          <div class="p-5 ">
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white mt-4" data-modal-hide="default-modal" data-modal-target="default-modal2" data-modal-toggle="default-modal2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>                          
+            </button>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white mt-4" data-modal-hide="default-modal" data-modal-target="default-modal1" data-modal-toggle="default-modal1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>            
+            </button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Main modal -->
+<div id="default-modal1" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-6xl max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Vista Lateral Esquerda
+              </h3>
+              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal1">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5 space-y-4">
+            <img src="img/lado2.png" class="h-full w-full object-cover object-center">
+          </div>
+          <div class="p-5">
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white mt-4" data-modal-hide="default-modal1" data-modal-target="default-modal" data-modal-toggle="default-modal">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>                         
+            </button>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white mt-4" data-modal-hide="default-modal1" data-modal-target="default-modal2" data-modal-toggle="default-modal2">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>            
+            </button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<!-- Main modal -->
+<div id="default-modal2" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+  <div class="relative p-4 w-full max-w-6xl max-h-full">
+      <!-- Modal content -->
+      <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+          <!-- Modal header -->
+          <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Vista Frontal
+              </h3>
+              <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="default-modal2">
+                  <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                  </svg>
+                  <span class="sr-only">Close modal</span>
+              </button>
+          </div>
+          <!-- Modal body -->
+          <div class="p-4 md:p-5 space-y-4">
+            <img src="img/frente.png" class="h-full w-full object-cover object-center">
+          </div>
+          <div class="p-5">
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white mt-4" data-modal-hide="default-modal2" data-modal-target="default-modal1" data-modal-toggle="default-modal1">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
+              </svg>                         
+            </button>
+            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white mt-4" data-modal-hide="default-modal2" data-modal-target="default-modal" data-modal-toggle="default-modal">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+              </svg>            
+            </button>
+          </div>
+      </div>
+  </div>
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+
 </body>
 </html>
