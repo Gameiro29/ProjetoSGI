@@ -633,7 +633,7 @@
 			]
 		},
 		{
-			"name":"Cube.003",
+			"name":"Gaveta_L",
 			"primitives":[
 				{
 					"attributes":{
@@ -679,7 +679,7 @@
 			]
 		},
 		{
-			"name":"Cube.015",
+			"name":"Porta_R",
 			"primitives":[
 				{
 					"attributes":{
@@ -711,7 +711,7 @@
 			]
 		},
 		{
-			"name":"Cube.019",
+			"name":"Porta_L",
 			"primitives":[
 				{
 					"attributes":{
@@ -743,7 +743,7 @@
 			]
 		},
 		{
-			"name":"Cube.021",
+			"name":"Gaveta_R",
 			"primitives":[
 				{
 					"attributes":{
