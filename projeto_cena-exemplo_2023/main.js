@@ -44,7 +44,7 @@ controlos.addEventListener("change", renderizar);
 
 // Load do modelo 3D -> GLTFLoader
 let carregador = new GLTFLoader();
-carregador.load("./model/mesaAnimacao.gltf", function (gltf) {
+carregador.load("./model/mesaAnimacao_alterado.gltf", function (gltf) {
   cena.add(gltf.scene);
 });
 
@@ -52,7 +52,7 @@ carregador.load("./model/mesaAnimacao.gltf", function (gltf) {
 //luz frente
 const luzPonto = new THREE.PointLight("white");  
 luzPonto.position.set(0, 2, 2);
-luzPonto.intensity = 10;
+luzPonto.intensity = 2;
 cena.add(luzPonto);
 // auxiliar visual
 //const LightHelper1 = new THREE.PointLightHelper(luzPonto, 0.2);
@@ -61,13 +61,13 @@ cena.add(luzPonto);
 //luz trás
 const luzPonto2 = new THREE.PointLight("white");  
 luzPonto2.position.set(0, 2, -2);
-luzPonto2.intensity = 10;
+luzPonto2.intensity = 2;
 cena.add(luzPonto2);
 
 //luz lado direito
 const luzDirecional1 = new THREE.DirectionalLight("white");     
 luzDirecional1.position.set(3, 2, 0); //aponta na direção de (0, 0, 0)
-luzDirecional1.intensity = 15;
+luzDirecional1.intensity = 2;
 cena.add(luzDirecional1);
 // auxiliar visual
 //const LightHelper2 = new THREE.DirectionalLightHelper(luzDirecional1, 0.2);
@@ -76,7 +76,7 @@ cena.add(luzDirecional1);
 //luz lado esquerdo
 const luzDirecional2 = new THREE.DirectionalLight("white");     
 luzDirecional2.position.set(-3, 2, 0); //aponta na direção de (0, 0, 0)
-luzDirecional2.intensity = 15;
+luzDirecional2.intensity = 2;
 cena.add(luzDirecional2);
 
 // Renderizar e animar
