@@ -87,21 +87,73 @@
         </div>
       </nav>
     
-
-    <div>
-        <button id="btn_cor">Mudar cor</button>
-        <button id="btn_material">Mudar material</button>
-        <button id="btn_transparencia">Mudar transparencia</button>
-        <button id="btn_repor">Repor material</button>
-        <button id="btn_vis">Esconder/Mostrar</button>
+<!-- Product info -->
+<div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
+    <div class="lg:col-span-2 lg:pr-8">
+      <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">3D Viewer</h1>
     </div>
 
-    <!--THREE.js-->
-      
-    <div>
-        <canvas class="flex m-16 rounded-3xl border-gray-900 " id="meuCanvas"></canvas>
+    <!-- Options -->
+    <div class="mt-4 pl-7 lg:row-span-3 lg:mt-0 lg:border-l lg:border-gray-200">
+      <form class="mt-10 h-full w-full object-cover object-center">
+        <!-- Colors -->
+        <div>
+        <h3 class="text-sm font-medium text-gray-900">Materiais</h3>
+
+        <fieldset class="mt-4">
+            <legend class="sr-only">Choose a color</legend>
+            <div class="flex items-center space-x-3">
+            <!--
+                Active and Checked: "ring ring-offset-1"
+                Not Active and Checked: "ring-2"
+            -->
+            <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                <input type="radio" name="color-choice" value="White" class="sr-only" aria-labelledby="color-choice-0-label">
+                <span id="color-choice-0-label" class="sr-only">White</span>
+                <span aria-hidden="true" class="h-8 w-8 bg-white rounded-full border border-black border-opacity-10"></span>
+            </label>
+            <!--
+                Active and Checked: "ring ring-offset-1"
+                Not Active and Checked: "ring-2"
+            -->
+            <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                <input type="radio" name="color-choice" value="Gray" class="sr-only" aria-labelledby="color-choice-1-label">
+                <span id="color-choice-1-label" class="sr-only">Gray</span>
+                <span aria-hidden="true" class="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"></span>
+            </label>
+            <!--
+                Active and Checked: "ring ring-offset-1"
+                Not Active and Checked: "ring-2"
+            -->
+            <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900">
+                <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-2-label">
+                <span id="color-choice-2-label" class="sr-only">Black</span>
+                <span aria-hidden="true" class="h-8 w-8 bg-gray-900 rounded-full border border-black border-opacity-10"></span>
+            </label>
+            </div>
+        </fieldset>
+        </div>
+
+        <!-- Sizes -->
+        <h3 class="text-sm mt-10 font-medium text-gray-900">Animações</h3>
+
+        <button type="submit" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">Abrir Porta Direita</button>
+        <button type="submit" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">Abrir Porta Esquerda</button>
+        <button type="submit" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">Abrir Gaveta Direita</button>
+        <button type="submit" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-500 px-8 py-3 text-base font-medium text-white hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2">Abrir Gaveta Esquerda</button>
+
+        <h3 class="text-sm mt-16 font-medium text-gray-900">Funcionalidades</h3>
+        <button type="submit" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-800 px-8 py-3 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2">Repor material</button>
+        <button type="submit" class="mt-5 flex w-full items-center justify-center rounded-md border border-transparent bg-gray-800 px-8 py-3 text-base font-medium text-white hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-gray-700 focus:ring-offset-2">Esconder/Mostrar</button>
+    </form>
     </div>
 
+    <div class="py-10 lg:col-span-2 lg:col-start-1 w-full">
+      <canvas class=" rounded-3xl" id="meuCanvas"></canvas>
+    </div>
+  </div>
+
+  
     <div class="bg-gray-400 mt-8 h-6 w-full">
     </div> 
         <footer class="mx-auto bg-gray-200 py-4 w-full">
