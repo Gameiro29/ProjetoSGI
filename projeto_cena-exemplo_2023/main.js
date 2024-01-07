@@ -9,20 +9,27 @@ const btn_repor = document.getElementById("btn_repor");
 const btn_vis = document.getElementById("btn_vis");
 const canva = document.getElementById("meuCanvas");
 
+let candidatos = []
+let alvo = null
+
 // Criar a cena
 let cena = new THREE.Scene();
 cena.background = new THREE.Color("lightgray");
 
 // Criar e posicionar a camara
-let camara = new THREE.PerspectiveCamera(70, 800 / 600, 0.1, 500);
-camara.position.x = 2;
-camara.position.y = 3;
-camara.position.z = 5;
-camara.lookAt(0, 0, 0);
+let camera = new THREE.PerspectiveCamera(70, 800 / 600, 0.1, 500);
+camera.position.x = 2;
+camera.position.y = 3;
+camera.position.z = 5;
+camera.lookAt(0, 0, 0);
+
+let raycaster = new THREE.Raycaster()
+let rato = new THREE.Vector2()
 
 // Criar e configurar o renderer
 let renderer = new THREE.WebGLRenderer({canvas : canva});
-renderer.setSize(800, 600);
+renderer.setSize(window.innerWidth, window.innerHeight)
+renderer.shadowMap.enabled = true;
 
 // Criar Eixos
 let eixos = new THREE.AxesHelper();
@@ -32,20 +39,63 @@ cena.add(eixos);
 let grelha = new THREE.GridHelper();
 cena.add(grelha);
 
+function pegarPrimeiro() {
+  raycaster.setFromCamera(rato, camera)
+  let intersetados = raycaster.intersectObjects(candidatos)
+  console.log(intersetados.length)
+  if (intersetados.length > 0) {
+      // fazer o que houver a fazer com o primeiro interesetado . . . intersetados[0].object . . .
+      console.log(intersetados[0].object.name)
+      //object.getObjectByName(alvo) 
+      alvo.material = intersetados[0].object.material
+  }
+}
+
+window.onclick = function (evento) {
+  rato.x = (evento.clientX / window.innerWidth) * 2 - 1   // se nao der meter window.innerWidth
+  rato.y = -(evento.clientY / window.innerHeight) * 2 + 1  // se nao der meter window.innerHeight
+
+  // invocar raycaster
+  pegarPrimeiro()
+}
+
 // Controlos de cena -> OrbitControls
-let controlos = new OrbitControls(camara, renderer.domElement);
+let controlos = new OrbitControls(camera, renderer.domElement);
 
 // Renderizar e animar
 function renderizar() {
-  renderer.render(cena, camara);
+  renderer.render(cena, camera);
 }
 renderizar();
 controlos.addEventListener("change", renderizar);
 
+let material_novo = new THREE.MeshStandardMaterial({
+  metalness: 1, // entre 0 e 1
+  roughness: 0.5 // entre 0 e 1 
+})
+
 // Load do modelo 3D -> GLTFLoader
 let carregador = new GLTFLoader();
-carregador.load("./model/mesaAnimacao_alterado.gltf", function (gltf) {
-  cena.add(gltf.scene);
+carregador.load(
+  "./model/mesaAnimacao_alterado.gltf",
+    function (gltf) {
+      cena.add(gltf.scene);
+      cena.traverse(function(elemento){
+        if (elemento.isMesh) {
+          cena.getObjectByName(elemento.name).castShadow = true
+          cena.getObjectByName(elemento.name).receiveShadow = true
+          /*if (elemento.name == 'Cubo') {
+              alvo = elemento
+              console.log(alvo)
+          }*/
+          if (elemento.name.includes('Porta_R')){  //tinha else if aqui
+              console.log(elemento)
+              candidatos.push(elemento)
+              
+          }
+          //console.log(elemento.name)
+      }
+      })
 });
 
 //Configuração de luzes
@@ -79,20 +129,11 @@ luzDirecional2.position.set(-3, 2, 0); //aponta na direção de (0, 0, 0)
 luzDirecional2.intensity = 2;
 cena.add(luzDirecional2);
 
-// Renderizar e animar
-let delta = 0; // tempo desde a última atualização
-let relogio = new THREE.Clock(); // componente que obtém o delta
-let latencia_minima = 1 / 60; // tempo mínimo entre cada atualização
 function animar() {
-  requestAnimationFrame(animar); // agendar animar para o próximo animation frame
-  delta += relogio.getDelta(); // acumula tempo entre chamadas de getDelta
-  if (delta < latencia_minima) return; // não exceder a taxa de atualização
-  // atualizar rotação do cubo
-  cubo.rotateX(0.01);
-  cubo.rotateY(0.02);
-  // mostrar...
-  renderer.render(cena, camara);
-  delta = delta % latencia_minima; // atualizar delta com o excedente
+  requestAnimationFrame(animar); 
+  renderer.render(cena, camera);
 }
 // iniciar animar
 animar();
+
+console.log(cena.getObjectByName(cena.name))
