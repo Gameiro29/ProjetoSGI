@@ -50,12 +50,18 @@ let grelha = new THREE.GridHelper();
 cena.add(grelha);
 
 function pegarPrimeiro() {
-  console.log("candidatos", candidatos)
+ // console.log("candidatos", candidatos)
   if (candidatos.length>0) {
     raycaster.setFromCamera(rato, camera)
     console.log(raycaster.intersectObjects(candidatos))
     let intersetados = raycaster.intersectObjects(candidatos)
     console.log(intersetados.length)
+
+    //const intersetados = raycaster.intersectObjects( cena.children );
+    for ( let i = 0; i < intersetados.length; i ++ ) {
+      intersetados[ i ].object.material.color.set( 0xff0000 );
+	  }
+
     if (intersetados.length > 0) {
         // fazer o que houver a fazer com o primeiro interesetado . . . intersetados[0].object . . .
         //object.getObjectByName(alvo) 
@@ -80,7 +86,7 @@ function pegarPrimeiro() {
         }
 
 
-      }else if(intersetados[0].object.name == "Gaveta_R_1" || intersetados[0].object.name == "Gaveta_R_2"){
+      }else if(intersetados[0].object.name == "Gaveta_R_1" || intersetados[0].object.name == "Gaveta_R_2"){ 
         console.log(intersetados[0].object.name)
         if (acao_abreGavetaR.paused){
           acao_abreGavetaR.paused = !acao_abreGavetaR.paused
@@ -106,9 +112,15 @@ function pegarPrimeiro() {
   } 
 }
 
-window.onclick = function (evento) {
-  rato.x = (evento.clientX / 800) * 2 - 1   // se nao der meter window.innerWidth
-  rato.y = -(evento.clientY / 600) * 2 + 1  // se nao der meter window.innerHeight
+canva.onclick = function (evento) {
+  var limites = evento.target.getBoundingClientRect()
+  rato.x = 2 * (evento.clientX - limites.left) / parseInt(meuCanvas.style.width) - 1
+  rato.y = 1 - 2 * (evento.clientY - limites.top) / parseInt(meuCanvas.style.height)
+
+  /*rato.x = (evento.clientX / 800) * 2 - 1   // se nao der meter window.innerWidth
+  rato.y = -(evento.clientY /600) * 2 + 1  // se nao der meter window.innerHeight
+  */
+
   // invocar raycaster
   pegarPrimeiro()
 }
@@ -118,6 +130,11 @@ let controlos = new OrbitControls(camera, renderer.domElement);
 
 // Renderizar e animar
 function renderizar() {
+  /*const intersects = raycaster.intersectObjects( cena.children );
+  for ( let i = 0; i < intersects.length; i ++ ) {
+		intersects[ i ].object.material.color.set( 0xff0000 );
+	}*/
+
   renderer.render(cena, camera);
 }
 renderizar();
