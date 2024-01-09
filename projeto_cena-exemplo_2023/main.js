@@ -2,12 +2,6 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/loaders/GLTFLoader.js";
 
-const btn_cor = document.getElementById("btn_cor");
-const btn_material = document.getElementById("btn_material");
-const btn_transparencia = document.getElementById("btn_transparencia");
-const btn_repor = document.getElementById("btn_repor");
-const btn_vis = document.getElementById("btn_vis");
-const canva = document.getElementById("meuCanvas");
 
 let candidatos = []
 let alvo = null
@@ -29,10 +23,54 @@ let rato = new THREE.Vector2()
 let relogio = new THREE.Clock()
 let misturador = new THREE.AnimationMixer(cena)
 
+
+// Criar Ações
 let acao_abrePortaR = null
 let acao_abrePortaL = null
 let acao_abreGavetaR = null
 let acao_abreGavetaL = null
+
+// Captura do elemento HTML
+  // Captura do elemento canva
+  const canva = document.getElementById("meuCanvas");
+
+  //Seletor do Controlo do Loop
+  var menuLoop = document.getElementById("menu_loop");
+
+  //Botões de Controlo da PORTA DIREITA
+  const btn_play_PortaR = document.getElementById("btn_play_PortaR");
+  const btn_pause_PortaR = document.getElementById("btn_pause_PortaR");
+  const btn_stop_PortaR = document.getElementById("btn_stop_PortaR");
+  const btn_reverse_PortaR = document.getElementById("btn_reverse_PortaR");
+
+  //Botões de Controlo da PORTA ESQUERDA
+  const btn_play_PortaL = document.getElementById("btn_play_PortaL");
+  const btn_pause_PortaL = document.getElementById("btn_pause_PortaL");
+  const btn_stop_PortaL = document.getElementById("btn_stop_PortaL");
+  const btn_reverse_PortaL = document.getElementById("btn_reverse_PortaL");
+
+  //Botões de Controlo da GAVETA DIREITA
+  const btn_play_GavetaR = document.getElementById("btn_play_GavetaR");
+  const btn_pause_GavetaR = document.getElementById("btn_pause_GavetaR");
+  const btn_stop_GavetaR = document.getElementById("btn_stop_GavetaR");
+  const btn_reverse_GavetaR = document.getElementById("btn_reverse_GavetaR");
+
+  //Botões de Controlo da GAVETA ESQUERDA
+  const btn_play_GavetaL = document.getElementById("btn_play_GavetaL");
+  const btn_pause_GavetaL = document.getElementById("btn_pause_GavetaL");
+  const btn_stop_GavetaL = document.getElementById("btn_stop_GavetaL");
+  const btn_reverse_GavetaL = document.getElementById("btn_reverse_GavetaL");
+
+  //Botões de Controlo de todas as ANIMAÇÕES
+  const btn_play = document.getElementById("btn_play");
+  const btn_stop = document.getElementById("btn_stop");
+
+  //Cores
+  //const color_white = 
+  //const color_gray = 
+  //const color_black = 
+
+  //console.log("COLORS:", color_gray, color_white, color_black);
 
 
 
@@ -57,16 +95,12 @@ function pegarPrimeiro() {
     let intersetados = raycaster.intersectObjects(candidatos)
     console.log(intersetados.length)
 
-    //const intersetados = raycaster.intersectObjects( cena.children );
-    for ( let i = 0; i < intersetados.length; i ++ ) {
-      intersetados[ i ].object.material.color.set( 0xff0000 );
-	  }
-
     if (intersetados.length > 0) {
         // fazer o que houver a fazer com o primeiro interesetado . . . intersetados[0].object . . .
         //object.getObjectByName(alvo) 
         //alvo.material = intersetados[0].object.material
       if (intersetados[0].object.name == "Porta_R_1" || intersetados[0].object.name == "Porta_R_2"|| intersetados[0].object.name == "Porta_R_3") {
+        
         console.log(intersetados[0].object.name)
         if (acao_abrePortaR.paused){
           acao_abrePortaR.paused = !acao_abrePortaR.paused
@@ -155,36 +189,38 @@ carregador.load(
         if (elemento.isMesh) {
           cena.getObjectByName(elemento.name).castShadow = true
           cena.getObjectByName(elemento.name).receiveShadow = true
-          if (elemento.name == '') {
-              alvo = elemento
-              console.log(alvo)
-              console.error(alvo)
-
-          }
-          if (elemento.name.includes('Plane')){  //tinha else if aqui
-
-          }
-          else{  //tinha else if aqui
-            console.log(elemento)
-            candidatos.push(elemento)
-            console.log(candidatos)
-
-            let clipe= THREE.AnimationClip.findByName(gltf.animations, 'abrePortaR');
-            acao_abrePortaR = misturador.clipAction(clipe);
-
-            clipe = THREE.AnimationClip.findByName(gltf.animations, 'abrePortaL');
-            acao_abrePortaL = misturador.clipAction(clipe);
-
-            clipe = THREE.AnimationClip.findByName(gltf.animations, 'abreGavetaR');
-            acao_abreGavetaR = misturador.clipAction(clipe);
-
-
-            clipe = THREE.AnimationClip.findByName(gltf.animations, 'abreGavetaL');
-            acao_abreGavetaL = misturador.clipAction(clipe);
-
-  
           
-        }
+          //tinha else if aqui
+          console.log(elemento)
+          candidatos.push(elemento)
+          console.log(candidatos)
+        
+
+          //Importação da Animação "abrePortaR"
+          let clipe= THREE.AnimationClip.findByName(gltf.animations, 'abrePortaR');
+          acao_abrePortaR = misturador.clipAction(clipe);
+          acao_abrePortaR.setLoop(THREE.LoopOnce);
+          acao_abrePortaR.clampWhenFinished = true
+
+          //Importação da Animação "abrePortaL"
+          clipe = THREE.AnimationClip.findByName(gltf.animations, 'abrePortaL');
+          acao_abrePortaL = misturador.clipAction(clipe);
+          acao_abrePortaL.setLoop(THREE.LoopOnce);
+          acao_abrePortaL.clampWhenFinished = true
+
+          //Importação da Animação "abreGavetaR"
+          clipe = THREE.AnimationClip.findByName(gltf.animations, 'abreGavetaR');
+          acao_abreGavetaR = misturador.clipAction(clipe);
+          acao_abreGavetaR.setLoop(THREE.LoopOnce);
+          acao_abreGavetaR.clampWhenFinished = true
+
+          //Importação da Animação "abreGavetaL"
+          clipe = THREE.AnimationClip.findByName(gltf.animations, 'abreGavetaL');
+          acao_abreGavetaL = misturador.clipAction(clipe);
+          acao_abreGavetaL.setLoop(THREE.LoopOnce);
+          acao_abreGavetaL.clampWhenFinished = true
+
+        
           //console.log(elemento.name)
       }
       })
@@ -247,21 +283,20 @@ animate()
 controlos.addEventListener( 'change', animate )
 
 
-//controlo de loop
-var menuLoop = document.getElementById("menu_loop")
+//CONTROLO do LOOP das ANIMAÇÕES
 menuLoop.addEventListener("change", function() {
     switch (menuLoop.value) {
         case "1":
-            acao_abrePortaR.setLoop(THREE.LoopOnce)
+            acao_abrePortaR.setLoop(THREE.LoopOnce);
             acao_abrePortaR.clampWhenFinished = true
-            acao_abrePortaL.setLoop(THREE.LoopOnce)
+            acao_abrePortaL.setLoop(THREE.LoopOnce);
             acao_abrePortaL.clampWhenFinished = true
-            acao_abreGavetaR.setLoop(THREE.LoopOnce)
+            acao_abreGavetaR.setLoop(THREE.LoopOnce);
             acao_abreGavetaR.clampWhenFinished = true
-            acao_abreGavetaL.setLoop(THREE.LoopOnce)
+            acao_abreGavetaL.setLoop(THREE.LoopOnce);
             acao_abreGavetaL.clampWhenFinished = true
-          
             break;
+
         case "2":
             acao_abrePortaR.setLoop(THREE.LoopRepeat);
             acao_abrePortaL.setLoop(THREE.LoopRepeat);
@@ -281,27 +316,40 @@ menuLoop.addEventListener("change", function() {
 });
 
 
-//acao_abrePortaR
-document.getElementById("btn_play_PortaR").onclick = function () {
+//AÇÕES PORTA DIREITA
+// Abrir/fechar PORTA DIREITA
+btn_play_PortaR.onclick = function () {
+  console.error(acao_abrePortaR);
+    if(acao_abrePortaR.paused && acao_abrePortaR.timeScale == -1){
+      acao_abrePortaR.stop()
+    }
     if (acao_abrePortaR.paused){
       acao_abrePortaR.paused = !acao_abrePortaR.paused
+      acao_abrePortaR.timeScale = -1
     }
     else {
+      acao_abrePortaR.timeScale = 1
       acao_abrePortaR.play()
     }
 }
 
-document.getElementById("btn_pause_PortaR").onclick = function () {
+// Pausar animação PORTA DIREITA
+btn_pause_PortaR.onclick = function () {
     if (!acao_abrePortaR.paused){
       acao_abrePortaR.paused = !acao_abrePortaR.paused
+    } else {
+      acao_abrePortaR.paused = !acao_abrePortaR.paused
+      acao_abrePortaR.play()
     }
 }
 
-document.getElementById("btn_stop_PortaR").onclick = function () {
+// Stop animação PORTA DIREITA
+btn_stop_PortaR.onclick = function () {
     acao_abrePortaR.stop()
 }
 
-document.getElementById("btn_reverse_PortaR").onclick = function () {
+// Reverse animação PORTA DIREITA
+btn_reverse_PortaR.onclick = function () {
   if (acao_abrePortaR.timeScale = -1) {
     acao_abrePortaR.timeScale = 1
   }else{
@@ -310,28 +358,39 @@ document.getElementById("btn_reverse_PortaR").onclick = function () {
 }
 
 
-//acao_abrePortaL
-document.getElementById("btn_play_PortaL").onclick = function () {
-  console.log(acao_abrePortaL)
+//AÇÕES PORTA ESQUERDA
+// Abrir/fechar PORTA ESQUERDA
+btn_play_PortaL.onclick = function () {
+  if(acao_abrePortaL.paused && acao_abrePortaL.timeScale == -1){
+    acao_abrePortaL.stop()
+  }
   if (acao_abrePortaL.paused){
     acao_abrePortaL.paused = !acao_abrePortaL.paused
+    acao_abrePortaL.timeScale = -1
   }
   else {
+    acao_abrePortaL.timeScale = 1
     acao_abrePortaL.play()
   }
 }
 
-document.getElementById("btn_pause_PortaL").onclick = function () {
+// Pausar animação PORTA ESQUERDA
+btn_pause_PortaL.onclick = function () {
   if (!acao_abrePortaL.paused){
     acao_abrePortaL.paused = !acao_abrePortaL.paused
+  } else {
+    acao_abrePortaL.paused = !acao_abrePortaL.paused
+    acao_abrePortaL.play()
   }
 }
 
-document.getElementById("btn_stop_PortaL").onclick = function () {
+// Stop animação PORTA ESQUERDA
+btn_stop_PortaL.onclick = function () {
   acao_abrePortaL.stop()
 }
 
-document.getElementById("btn_reverse_PortaL").onclick = function () {
+// Reverse animação PORTA ESQUERDA
+btn_reverse_PortaL.onclick = function () {
 if (acao_abrePortaL.timeScale = -1) {
   acao_abrePortaL.timeScale = 1
 }else{
@@ -340,27 +399,40 @@ if (acao_abrePortaL.timeScale = -1) {
 }
 
 
-//acao_abreGavetaR
-document.getElementById("btn_play_GavetaR").onclick = function () {
+
+//AÇÕES GAVETA DIREITA
+// Abrir/fechar GAVETA DIREITA
+btn_play_GavetaR.onclick = function () {
+  if(acao_abreGavetaR.paused && acao_abreGavetaR.timeScale == -1){
+    acao_abreGavetaR.stop()
+  }
   if (acao_abreGavetaR.paused){
     acao_abreGavetaR.paused = !acao_abreGavetaR.paused
+    acao_abreGavetaR.timeScale = -1
   }
   else {
+    acao_abreGavetaR.timeScale = 1
     acao_abreGavetaR.play()
   }
 }
 
-document.getElementById("btn_pause_GavetaR").onclick = function () {
+// Pausar animação GAVETA DIREITA
+btn_pause_GavetaR.onclick = function () {
   if (!acao_abreGavetaR.paused){
     acao_abreGavetaR.paused = !acao_abreGavetaR.paused
+  } else {
+    acao_abreGavetaR.paused = !acao_abreGavetaR.paused
+    acao_abreGavetaR.play()
   }
 }
 
-document.getElementById("btn_stop_GavetaR").onclick = function () {
+// Stop animação GAVETA DIREITA
+btn_stop_GavetaR.onclick = function () {
   acao_abreGavetaR.stop()
 }
 
-document.getElementById("btn_reverse_GavetaR").onclick = function () {
+// Reverse animação GAVETA DIREITA
+btn_reverse_GavetaR.onclick = function () {
 if (acao_abreGavetaR.timeScale = -1) {
   acao_abreGavetaR.timeScale = 1
 }else{
@@ -369,27 +441,39 @@ if (acao_abreGavetaR.timeScale = -1) {
 }
 
 
-//acao_abreGavetaL
-document.getElementById("btn_play_GavetaL").onclick = function () {
+//AÇÕES GAVETA ESQUERDA
+// Abrir/fechar GAVETA ESQUERDA
+btn_play_GavetaL.onclick = function () {
+  if(acao_abreGavetaL.paused && acao_abreGavetaL.timeScale == -1){
+    acao_abreGavetaL.stop()
+  }
   if (acao_abreGavetaL.paused){
     acao_abreGavetaL.paused = !acao_abreGavetaL.paused
+    acao_abreGavetaL.timeScale = -1
   }
   else {
+    acao_abreGavetaL.timeScale = 1
     acao_abreGavetaL.play()
   }
 }
 
-document.getElementById("btn_pause_GavetaL").onclick = function () {
+// Pausar animação GAVETA ESQUERDA
+btn_pause_GavetaL.onclick = function () {
   if (!acao_abreGavetaL.paused){
     acao_abreGavetaL.paused = !acao_abreGavetaL.paused
+  } else {
+    acao_abreGavetaL.paused = !acao_abreGavetaL.paused
+    acao_abreGavetaL.play()
   }
 }
 
-document.getElementById("btn_stop_GavetaL").onclick = function () {
+// Stop animação GAVETA ESQUERDA
+btn_stop_GavetaL.onclick = function () {
   acao_abreGavetaL.stop()
 }
 
-document.getElementById("btn_reverse_GavetaL").onclick = function () {
+// Reverse animação GAVETA ESQUERDA
+btn_reverse_GavetaL.onclick = function () {
 if (acao_abreGavetaL.timeScale = -1) {
   acao_abreGavetaL.timeScale = 1
 }else{
@@ -398,22 +482,47 @@ if (acao_abreGavetaL.timeScale = -1) {
 }
 
 
-
-//Todas as açoes em simultanio
-
-document.getElementById("btn_play").onclick = function () {
+//Ações em Simultaneo
+//Todas as açoes em Simultaneo
+btn_play.onclick = function () {
+  if(acao_abreGavetaL.paused && acao_abreGavetaL.timeScale == -1){
+    acao_abreGavetaL.stop()
+    acao_abreGavetaR.stop()
+    acao_abrePortaL.stop()
+    acao_abrePortaR.stop()
+  }
   if (acao_abreGavetaL.paused || acao_abreGavetaR.paused || acao_abrePortaL.paused || acao_abrePortaR.paused){
     acao_abreGavetaL.paused = !acao_abreGavetaL.paused
-    acao_abreGavetaR.paused = !acao_abreGavetaR.paused
-    acao_abrePortaL.paused = !acao_abrePortaL.paused
-    acao_abrePortaR.paused = !acao_abrePortaR.paused
+    acao_abreGavetaL.timeScale = -1
 
+    acao_abreGavetaR.paused = !acao_abreGavetaR.paused
+    acao_abreGavetaR.timeScale = -1
+
+    acao_abrePortaL.paused = !acao_abrePortaL.paused
+    acao_abrePortaL.timeScale = -1
+
+    acao_abrePortaR.paused = !acao_abrePortaR.paused
+    acao_abrePortaR.timeScale = -1
   }
   else {
+    acao_abreGavetaL.timeScale = 1
     acao_abreGavetaL.play()
+    acao_abreGavetaR.timeScale = 1
     acao_abreGavetaR.play()
+    acao_abrePortaL.timeScale = 1
     acao_abrePortaL.play()
+    acao_abrePortaR.timeScale = 1
     acao_abrePortaR.play()
   }
 }
+
+//Parar todas as Animações
+btn_stop.onclick = function () {
+  acao_abrePortaR.stop()
+  acao_abrePortaL.stop()
+  acao_abreGavetaR.stop()
+  acao_abreGavetaL.stop()
+
+}
+
 console.log(cena.getObjectByName(cena.name))
