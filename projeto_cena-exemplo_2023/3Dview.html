@@ -102,38 +102,29 @@
             <div>
                 <h2 class="text-sm mt-10 font-bold text-base text-gray-900">Materiais</h2>
 
-                <fieldset class="mt-4">
-                    <legend class="sr-only">Choose a color</legend>
-                    <div class="flex items-center space-x-3">
-                    <!--
-                      mt-5  Active and Checked: "ring ring-offset-1"
-                        Not Active and Checked: "ring-2"
-                    -->
-                    <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
-                        <input type="radio" name="color-choice" value="White" class="sr-only" aria-labelledby="color-choice-0-label">
-                        <span id="color-choice-0-label" class="sr-only">White</span>
-                        <span aria-hidden="true" class="h-8 w-8 bg-white rounded-full border border-black border-opacity-10"></span>
-                    </label>
-                    <!--
-                        Active and Checked: "ring ring-offset-1"
-                        Not Active and Checked: "ring-2"
-                    -->
-                    <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
-                        <input type="radio" name="color-choice" value="Gray" class="sr-only" aria-labelledby="color-choice-1-label">
-                        <span id="color-choice-1-label" class="sr-only">Gray</span>
-                        <span aria-hidden="true" class="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"></span>
-                    </label>
-                    <!--
-                        Active and Checked: "ring ring-offset-1"
-                        Not Active and Checked: "ring-2"
-                    -->
-                    <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900">
-                        <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-2-label">
-                        <span id="color-choice-2-label" class="sr-only">Black</span>
-                        <span aria-hidden="true" class="h-8 w-8 bg-gray-900 rounded-full border border-black border-opacity-10"></span>
-                    </label>
-                    </div>
-                </fieldset>
+                <form id="colorForm">
+                    <fieldset class="mt-4" id="color_wood">
+                        <legend class="sr-only">Choose a color</legend>
+                        <div class="flex items-center space-x-3">
+                            <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                                <input id="color_white" type="radio" name="color-choice" value="wood1" class="sr-only" aria-labelledby="color-choice-0-label">
+                                <span id="color-choice-0-label" class="sr-only">White</span>
+                                <img class="h-8 w-8 rounded-full border border-black border-opacity-10" src="./model/materials/Wicker2_Color_1K.png">
+                            </label>
+                            <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                                <input id="color_gray" type="radio" name="color-choice" value="wood2" class="sr-only" aria-labelledby="color-choice-1-label">
+                                <span id="color-choice-1-label" class="sr-only">Gray</span>
+                                <img class="h-8 w-8 rounded-full border border-black border-opacity-10" src="./model/materials/Wood_Color_2K.png">
+                            </label>
+                            <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900">
+                                <input id="color_black" type="radio" name="color-choice" value="wood3" class="sr-only" aria-labelledby="color-choice-2-label">
+                                <span id="color-choice-2-label" class="sr-only">Black</span>
+                                <img class="h-8 w-8 rounded-full border border-black border-opacity-10" src="./model/materials/Wicker2_Normal_1K.png">
+                            </label>
+                        </div>
+                    </fieldset>
+                </form>
+                
                 </div>
         
             <!-- Sizes -->

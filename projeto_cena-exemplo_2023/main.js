@@ -58,11 +58,8 @@ let acao_abreGavetaL = null
   const btn_stop = document.getElementById("btn_stop");
 
   //Cores
-  //const color_white = 
-  //const color_gray = 
-  //const color_black = 
+  const color_wood = document.getElementById("color_wood");
 
-  //console.log("COLORS:", color_gray, color_white, color_black);
 
 
 
@@ -110,7 +107,7 @@ function pegarPrimeiro() {
         
         //chama a função abrir gaveta esquerda
         abrir_GavetaL();
-        
+
       }else{
         console.log(intersetados[0].object.name)
       }
@@ -166,7 +163,9 @@ carregador.load(
           console.log(elemento)
           candidatos.push(elemento)
           console.log(candidatos)
-        
+          alvo=elemento
+
+          
 
           //Importação da Animação "abrePortaR"
           let clipe= THREE.AnimationClip.findByName(gltf.animations, 'abrePortaR');
@@ -254,6 +253,36 @@ animate()
 
 controlos.addEventListener( 'change', animate )
 
+//Alterar a Cor da Madeira
+color_wood.addEventListener("click", function(event){
+  if (event.target.type === "radio") {
+    // Capturar o valor da opção selecionada (cor)
+    const selectedColor = event.target.value;
+
+     //use customized MeshStandardMaterial for this mesh
+     const customMaterialPatch_3 = new THREE.MeshStandardMaterial({
+      color: 0xe10912,
+      side: THREE.DoubleSide,
+      alphaTest: 0.9,
+      needUpdate: true
+      });
+
+    let tempMaterial = new THREE.MeshStandardMaterial();
+
+    if (selectedColor=="wood1") {    
+        console.log(candidatos)
+        for (let index = 0; index < candidatos.length-1; index++) {
+          candidatos[index].material=tempMaterial;
+        }
+    } else if(selectedColor=="wood2"){
+        for (let index = 0; index < candidatos.length-1; index++) {
+          candidatos[index].material=customMaterialPatch_3;
+        }
+    }
+
+}
+})
+
 
 //CONTROLO do LOOP das ANIMAÇÕES
 menuLoop.addEventListener("change", function() {
@@ -295,7 +324,6 @@ btn_play_PortaR.onclick = function () {
 };
 
 function abrir_PortaR(){
-  console.error(acao_abrePortaR);
     if(acao_abrePortaR.paused && acao_abrePortaR.timeScale == -1){
       acao_abrePortaR.stop()
     }
