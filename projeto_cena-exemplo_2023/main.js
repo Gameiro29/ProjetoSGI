@@ -40,26 +40,18 @@ let acao_abreGavetaL = null
   //Botões de Controlo da PORTA DIREITA
   const btn_play_PortaR = document.getElementById("btn_play_PortaR");
   const btn_pause_PortaR = document.getElementById("btn_pause_PortaR");
-  const btn_stop_PortaR = document.getElementById("btn_stop_PortaR");
-  const btn_reverse_PortaR = document.getElementById("btn_reverse_PortaR");
 
   //Botões de Controlo da PORTA ESQUERDA
   const btn_play_PortaL = document.getElementById("btn_play_PortaL");
   const btn_pause_PortaL = document.getElementById("btn_pause_PortaL");
-  const btn_stop_PortaL = document.getElementById("btn_stop_PortaL");
-  const btn_reverse_PortaL = document.getElementById("btn_reverse_PortaL");
 
   //Botões de Controlo da GAVETA DIREITA
   const btn_play_GavetaR = document.getElementById("btn_play_GavetaR");
   const btn_pause_GavetaR = document.getElementById("btn_pause_GavetaR");
-  const btn_stop_GavetaR = document.getElementById("btn_stop_GavetaR");
-  const btn_reverse_GavetaR = document.getElementById("btn_reverse_GavetaR");
 
   //Botões de Controlo da GAVETA ESQUERDA
   const btn_play_GavetaL = document.getElementById("btn_play_GavetaL");
   const btn_pause_GavetaL = document.getElementById("btn_pause_GavetaL");
-  const btn_stop_GavetaL = document.getElementById("btn_stop_GavetaL");
-  const btn_reverse_GavetaL = document.getElementById("btn_reverse_GavetaL");
 
   //Botões de Controlo de todas as ANIMAÇÕES
   const btn_play = document.getElementById("btn_play");
@@ -100,45 +92,25 @@ function pegarPrimeiro() {
         //object.getObjectByName(alvo) 
         //alvo.material = intersetados[0].object.material
       if (intersetados[0].object.name == "Porta_R_1" || intersetados[0].object.name == "Porta_R_2"|| intersetados[0].object.name == "Porta_R_3") {
-        
-        console.log(intersetados[0].object.name)
-        if (acao_abrePortaR.paused){
-          acao_abrePortaR.paused = !acao_abrePortaR.paused
-        }
-        else {
-          acao_abrePortaR.play()
-        }
 
-        
+        //chama a função abrir porta direita
+        abrir_PortaR(); 
+
       }else if(intersetados[0].object.name == "Porta_L_1" || intersetados[0].object.name == "Porta_L_2"|| intersetados[0].object.name == "Porta_L_3"){
-        console.log(intersetados[0].object.name)
-        if (acao_abrePortaL.paused){
-          acao_abrePortaL.paused = !acao_abrePortaL.paused
-        }
-        else {
-          acao_abrePortaL.play()
-        }
-
+       
+        //chama a funçaõ abrir porta esquerda
+        abrir_PortaL();
 
       }else if(intersetados[0].object.name == "Gaveta_R_1" || intersetados[0].object.name == "Gaveta_R_2"){ 
-        console.log(intersetados[0].object.name)
-        if (acao_abreGavetaR.paused){
-          acao_abreGavetaR.paused = !acao_abreGavetaR.paused
-        }
-        else {
-          acao_abreGavetaR.play()
-        }
-
+        
+        //chama a funçaõ abrir gaveta direita
+        abrir_GavetaR();
 
       }else if(intersetados[0].object.name == "Gaveta_L_1" || intersetados[0].object.name == "Gaveta_L_2"){
-        console.log(intersetados[0].object.name)
-        if (acao_abreGavetaL.paused){
-          acao_abreGavetaL.paused = !acao_abreGavetaL.paused
-        }
-        else {
-          acao_abreGavetaL.play()
-        }
-
+        
+        //chama a função abrir gaveta esquerda
+        abrir_GavetaL();
+        
       }else{
         console.log(intersetados[0].object.name)
       }
@@ -319,6 +291,10 @@ menuLoop.addEventListener("change", function() {
 //AÇÕES PORTA DIREITA
 // Abrir/fechar PORTA DIREITA
 btn_play_PortaR.onclick = function () {
+  abrir_PortaR();
+};
+
+function abrir_PortaR(){
   console.error(acao_abrePortaR);
     if(acao_abrePortaR.paused && acao_abrePortaR.timeScale == -1){
       acao_abrePortaR.stop()
@@ -343,24 +319,17 @@ btn_pause_PortaR.onclick = function () {
     }
 }
 
-// Stop animação PORTA DIREITA
-btn_stop_PortaR.onclick = function () {
-    acao_abrePortaR.stop()
-}
 
-// Reverse animação PORTA DIREITA
-btn_reverse_PortaR.onclick = function () {
-  if (acao_abrePortaR.timeScale = -1) {
-    acao_abrePortaR.timeScale = 1
-  }else{
-    acao_abrePortaR.timeScale = -1
-  }
-}
 
 
 //AÇÕES PORTA ESQUERDA
 // Abrir/fechar PORTA ESQUERDA
+
 btn_play_PortaL.onclick = function () {
+  abrir_PortaL();
+};
+
+function abrir_PortaL() {
   if(acao_abrePortaL.paused && acao_abrePortaL.timeScale == -1){
     acao_abrePortaL.stop()
   }
@@ -384,25 +353,17 @@ btn_pause_PortaL.onclick = function () {
   }
 }
 
-// Stop animação PORTA ESQUERDA
-btn_stop_PortaL.onclick = function () {
-  acao_abrePortaL.stop()
-}
 
-// Reverse animação PORTA ESQUERDA
-btn_reverse_PortaL.onclick = function () {
-if (acao_abrePortaL.timeScale = -1) {
-  acao_abrePortaL.timeScale = 1
-}else{
-  acao_abrePortaL.timeScale = -1
-}
-}
 
 
 
 //AÇÕES GAVETA DIREITA
 // Abrir/fechar GAVETA DIREITA
 btn_play_GavetaR.onclick = function () {
+  abrir_GavetaR();
+}
+
+function abrir_GavetaR() {
   if(acao_abreGavetaR.paused && acao_abreGavetaR.timeScale == -1){
     acao_abreGavetaR.stop()
   }
@@ -426,24 +387,15 @@ btn_pause_GavetaR.onclick = function () {
   }
 }
 
-// Stop animação GAVETA DIREITA
-btn_stop_GavetaR.onclick = function () {
-  acao_abreGavetaR.stop()
-}
-
-// Reverse animação GAVETA DIREITA
-btn_reverse_GavetaR.onclick = function () {
-if (acao_abreGavetaR.timeScale = -1) {
-  acao_abreGavetaR.timeScale = 1
-}else{
-  acao_abreGavetaR.timeScale = -1
-}
-}
 
 
 //AÇÕES GAVETA ESQUERDA
 // Abrir/fechar GAVETA ESQUERDA
 btn_play_GavetaL.onclick = function () {
+  abrir_GavetaL();
+}
+
+function abrir_GavetaL() {
   if(acao_abreGavetaL.paused && acao_abreGavetaL.timeScale == -1){
     acao_abreGavetaL.stop()
   }
@@ -467,19 +419,6 @@ btn_pause_GavetaL.onclick = function () {
   }
 }
 
-// Stop animação GAVETA ESQUERDA
-btn_stop_GavetaL.onclick = function () {
-  acao_abreGavetaL.stop()
-}
-
-// Reverse animação GAVETA ESQUERDA
-btn_reverse_GavetaL.onclick = function () {
-if (acao_abreGavetaL.timeScale = -1) {
-  acao_abreGavetaL.timeScale = 1
-}else{
-  acao_abreGavetaL.timeScale = -1
-}
-}
 
 
 //Ações em Simultaneo
