@@ -4,7 +4,6 @@ import { GLTFLoader } from "three/examples/loaders/GLTFLoader.js";
 
 
 let candidatos = []
-let alvo = null
 
 // Criar a cena
 let cena = new THREE.Scene();
@@ -12,9 +11,9 @@ cena.background = new THREE.Color("lightgray");
 
 // Criar e posicionar a camara
 let camera = new THREE.PerspectiveCamera(70, 800 / 600, 0.1, 500);
-camera.position.x = 2;
-camera.position.y = 3;
-camera.position.z = 5;
+camera.position.x = 1;
+camera.position.y = 1;
+camera.position.z = 2;
 camera.lookAt(0, 0, 0);
 
 let raycaster = new THREE.Raycaster()
@@ -69,12 +68,12 @@ renderer.setSize(800, 600)
 renderer.shadowMap.enabled = true;
 
 // Criar Eixos
-let eixos = new THREE.AxesHelper();
-cena.add(eixos);
+//let eixos = new THREE.AxesHelper();
+//cena.add(eixos);
 
 // Criar Grelha
-let grelha = new THREE.GridHelper();
-cena.add(grelha);
+//let grelha = new THREE.GridHelper();
+//cena.add(grelha);
 
 function pegarPrimeiro() {
  // console.log("candidatos", candidatos)
@@ -86,8 +85,7 @@ function pegarPrimeiro() {
 
     if (intersetados.length > 0) {
         // fazer o que houver a fazer com o primeiro interesetado . . . intersetados[0].object . . .
-        //object.getObjectByName(alvo) 
-        //alvo.material = intersetados[0].object.material
+   
       if (intersetados[0].object.name == "Porta_R_1" || intersetados[0].object.name == "Porta_R_2"|| intersetados[0].object.name == "Porta_R_3") {
 
         //chama a função abrir porta direita
@@ -133,20 +131,12 @@ let controlos = new OrbitControls(camera, renderer.domElement);
 
 // Renderizar e animar
 function renderizar() {
-  /*const intersects = raycaster.intersectObjects( cena.children );
-  for ( let i = 0; i < intersects.length; i ++ ) {
-		intersects[ i ].object.material.color.set( 0xff0000 );
-	}*/
-
   renderer.render(cena, camera);
 }
+
 renderizar();
 controlos.addEventListener("change", renderizar);
 
-let material_novo = new THREE.MeshStandardMaterial({
-  metalness: 1, // entre 0 e 1
-  roughness: 0.5 // entre 0 e 1 
-})
 
 // Load do modelo 3D -> GLTFLoader
 let carregador = new GLTFLoader();
@@ -163,8 +153,6 @@ carregador.load(
           console.log(elemento)
           candidatos.push(elemento)
           console.log(candidatos)
-          alvo=elemento
-
           
 
           //Importação da Animação "abrePortaR"
@@ -192,7 +180,6 @@ carregador.load(
           acao_abreGavetaL.clampWhenFinished = true
 
         
-          //console.log(elemento.name)
       }
       })
 
@@ -211,7 +198,9 @@ cena.add(luzPonto);
 //luz trás
 const luzPonto2 = new THREE.PointLight("white");  
 luzPonto2.position.set(0, 2, -2);
-luzPonto2.intensity = 2;
+luzPonto2.intensity = 4;
+luzPonto2.castShadow=true
+
 cena.add(luzPonto2);
 
 //luz lado direito
@@ -259,27 +248,41 @@ color_wood.addEventListener("click", function(event){
     // Capturar o valor da opção selecionada (cor)
     const selectedColor = event.target.value;
 
-     //use customized MeshStandardMaterial for this mesh
-     const customMaterialPatch_3 = new THREE.MeshStandardMaterial({
-      color: 0xe10912,
-      side: THREE.DoubleSide,
-      alphaTest: 0.9,
-      needUpdate: true
-      });
-
-    let tempMaterial = new THREE.MeshStandardMaterial();
-
-    if (selectedColor=="wood1") {    
-        console.log(candidatos)
+    if (selectedColor=="wood") {    
+      console.log("CATCHAU:",candidatos)
+      for (let index = 0; index < candidatos.length-1; index++) {
+        if(candidatos[index].material.name=="Wood"){
+          candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/madeira_clara.jpg");
+        }else if(candidatos[index].material.name=="Wicker"){
+          candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/Wicker2_Color_1K.png");
+        }
+      }
+  }else if (selectedColor=="wood1") {    
+        console.log("CATCHAU:",candidatos)
         for (let index = 0; index < candidatos.length-1; index++) {
-          candidatos[index].material=tempMaterial;
+          if(candidatos[index].material.name=="Wood"){
+            candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/madeira_clara.jpg");
+          }else if(candidatos[index].material.name=="Wicker"){
+            candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/Wicker2_Color_1K.png");
+          }
         }
     } else if(selectedColor=="wood2"){
         for (let index = 0; index < candidatos.length-1; index++) {
-          candidatos[index].material=customMaterialPatch_3;
+          if(candidatos[index].material.name=="Wood"){
+            candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/madeira_cinza.jpg");
+          }else if(candidatos[index].material.name=="Wicker"){
+            candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/Wicker2_Color_1K.png");
+          }
         }
+    } else if(selectedColor=="wood3"){
+      for (let index = 0; index < candidatos.length-1; index++) {
+        if(candidatos[index].material.name=="Wood"){
+          candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/madeira_escura.jpg");
+        }else if(candidatos[index].material.name=="Wicker"){
+          candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/Wicker2_Color_1K.png");
+        }
+      }
     }
-
 }
 })
 

@@ -94,42 +94,35 @@
       </div>
         <!-- Options -->
         <div class="p-5 lg:row-span-3 lg:mt-0 aspect-h-5 aspect-w-4 lg:aspect-h-4 lg:aspect-w-3 sm:overflow-hidden sm:rounded-lg">
-            <h2 class="sr-only">Product information</h2>
-            <p class="text-3xl tracking-tight text-gray-900">240,99€</p>
+          <p class="text-2xl mb-4 text-gray-900">Secretária Escritório</p>
+          <p class="text-3xl tracking-tight text-gray-900">240,99€</p>
             <form class="mt-10 h-full w-full object-cover object-center">
                 <!-- Colors -->
                 <div>
-                <h3 class="text-sm font-medium text-gray-900">Color</h3>
+                <h3 class="text-sm font-medium text-gray-900">Materiais</h3>
 
                 <fieldset class="mt-4">
-                    <legend class="sr-only">Choose a color</legend>
+                    <legend class="sr-only">Escolhe a cor</legend>
                     <div class="flex items-center space-x-3">
-                    <!--
-                        Active and Checked: "ring ring-offset-1"
-                        Not Active and Checked: "ring-2"
-                    -->
-                    <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
-                        <input type="radio" name="color-choice" value="White" class="sr-only" aria-labelledby="color-choice-0-label">
-                        <span id="color-choice-0-label" class="sr-only">White</span>
-                        <span aria-hidden="true" class="h-8 w-8 bg-white rounded-full border border-black border-opacity-10"></span>
+                      <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                        <input id="color_white" type="radio" name="color-choice" value="wood" class="sr-only" aria-labelledby="color-choice-0-label">
+                        <span id="color-choice-0-label" class="sr-only"></span>
+                        <img class="h-10 w-10 rounded-full border border-black border-opacity-10" src="./model/materials/Wood_Color_2K.png">
                     </label>
-                    <!--
-                        Active and Checked: "ring ring-offset-1"
-                        Not Active and Checked: "ring-2"
-                    -->
                     <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
-                        <input type="radio" name="color-choice" value="Gray" class="sr-only" aria-labelledby="color-choice-1-label">
-                        <span id="color-choice-1-label" class="sr-only">Gray</span>
-                        <span aria-hidden="true" class="h-8 w-8 bg-gray-200 rounded-full border border-black border-opacity-10"></span>
+                        <input id="color_white" type="radio" name="color-choice" value="wood1" class="sr-only" aria-labelledby="color-choice-0-label">
+                        <span id="color-choice-0-label" class="sr-only"></span>
+                        <img class="h-10 w-10 rounded-full border border-black border-opacity-10" src="./model/materials/madeira_clara.jpg">
                     </label>
-                    <!--
-                        Active and Checked: "ring ring-offset-1"
-                        Not Active and Checked: "ring-2"
-                    -->
+                    <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-400">
+                        <input id="color_gray" type="radio" name="color-choice" value="wood2" class="sr-only" aria-labelledby="color-choice-1-label">
+                        <span id="color-choice-1-label" class="sr-only"></span>
+                        <img class="h-10 w-10 rounded-full border border-black border-opacity-10" src="./model/materials/madeira_cinza.jpg">
+                    </label>
                     <label class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 focus:outline-none ring-gray-900">
-                        <input type="radio" name="color-choice" value="Black" class="sr-only" aria-labelledby="color-choice-2-label">
-                        <span id="color-choice-2-label" class="sr-only">Black</span>
-                        <span aria-hidden="true" class="h-8 w-8 bg-gray-900 rounded-full border border-black border-opacity-10"></span>
+                        <input id="color_black" type="radio" name="color-choice" value="wood3" class="sr-only" aria-labelledby="color-choice-2-label">
+                        <span id="color-choice-2-label" class="sr-only"></span>
+                        <img class="h-10 w-10 rounded-full border border-black border-opacity-10" src="./model/materials/madeira_escura.jpg">
                     </label>
                     </div>
                 </fieldset>
@@ -156,31 +149,25 @@
     <!-- Product info -->
     <div class="mx-auto max-w-2xl px-4 pb-16 pt-10 sm:px-6 lg:grid lg:max-w-7xl lg:grid-rows-[auto,auto,1fr] lg:gap-x-8 lg:px-8 lg:pb-24 lg:pt-16">
       <div class="lg:col-span-2 lg:pr-8">
-        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Description</h1>
+        <h1 class="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">Descrição</h1>
       </div>
       <div class="py-10 lg:col-span-2 lg:col-start-1 lg:pb-16 lg:pr-8 lg:pt-6">
         <!-- Description and details -->
         <div>
-          <h3 class="sr-only">Description</h3>
+          <h3 class="sr-only">Descrição</h3>
           <div class="space-y-6">
-            <p class="text-base text-gray-900">The Basic Tee 6-Pack allows you to fully express your vibrant personality with three grayscale options. Feeling adventurous? Put on a heather gray tee. Want to be a trendsetter? Try our exclusive colorway: &quot;Black&quot;. Need to add an extra pop of color to your outfit? Our white tee has you covered.</p>
+            <p class="text-base text-gray-900"> Secretária de Nogueira é uma peça elegante e funcional que combina o charme intemporal da madeira de nogueira com a praticidade moderna. Com um design sóbrio e acabamento refinado, esta secretária oferece um espaço de trabalho sofisticado para qualquer escritório. Suas duas gavetas proporcionam um armazenamento organizado para documentos e utensílios de escritório, enquanto as duas portas garantem fácil acesso a itens maiores, mantendo a área de trabalho livre de desordem. A tonalidade rica da nogueira adiciona calor ao ambiente, conferindo um toque de classe e estilo à decoração do escritório. Uma escolha ideal para quem busca uma fusão de estética elegante e funcionalidade prática em mobiliário de escritório.</p>
           </div>
         </div>
         <div class="mt-10">
-          <h3 class="text-sm font-medium text-gray-900">Highlights</h3>
+          <h3 class="text-sm font-medium text-gray-900">Caracteristicas</h3>
           <div class="mt-4">
             <ul role="list" class="list-disc space-y-2 pl-4 text-sm">
-              <li class="text-gray-400"><span class="text-gray-600">Hand cut and sewn locally</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Dyed with our proprietary colors</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Pre-washed &amp; pre-shrunk</span></li>
-              <li class="text-gray-400"><span class="text-gray-600">Ultra-soft 100% cotton</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Design Elegante e Atemporal</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Organização Eficiente com Duas Gavetas</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Armazenamento Amplo com Duas Portas</span></li>
+              <li class="text-gray-400"><span class="text-gray-600">Qualidade Duradoura da Madeira de Nogueira</span></li>
             </ul>
-          </div>
-        </div>
-        <div class="mt-10">
-          <h2 class="text-sm font-medium text-gray-900">Details</h2>
-          <div class="mt-4 space-y-6">
-            <p class="text-sm text-gray-600">The 6-Pack includes two black, two white, and two heather gray Basic Tees. Sign up for our subscription service and be the first to get new, exciting colors, like our upcoming &quot;Charcoal Gray&quot; limited release.</p>
           </div>
         </div>
       </div>
@@ -191,13 +178,9 @@
 </div> 
 <footer class="mx-auto bg-gray-200 py-4 w-full">
 <div class="container py-8 px-12 mx-auto w-full">
-
-    <p class="mt-8 mb-8">This template is inspired by the stunning nordic minimalist design - in particular:
-        <br>
-        <a class="text-gray-800 underline hover:text-gray-900" href="http://savoy.nordicmade.com/" target="_blank">Savoy Theme</a> created by <a class="text-gray-800 underline hover:text-gray-900" href="https://nordicmade.com/">https://nordicmade.com/</a> and <a class="text-gray-800 underline hover:text-gray-900" href="https://www.metricdesign.no/" target="_blank">https://www.metricdesign.no/</a></p>
-
-    <p class="mb-8">Lorem ipsum dolor sit amet, consectetur <a href="#">random link</a> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vel risus commodo viverra maecenas accumsan lacus vel facilisis volutpat. Vitae aliquet nec ullamcorper sit. Nullam eget felis eget nunc lobortis mattis aliquam. In est ante in nibh mauris. Egestas congue quisque egestas diam in. Facilisi nullam vehicula ipsum a arcu. Nec nam aliquam sem et tortor consequat. Eget mi proin sed libero enim sed faucibus turpis in. Hac habitasse platea dictumst quisque. In aliquam sem fringilla ut. Gravida rutrum quisque non tellus orci ac auctor augue mauris. Accumsan lacus vel facilisis volutpat est velit egestas dui id. At tempor commodo ullamcorper a. Volutpat commodo sed egestas egestas fringilla. Vitae congue eu consequat ac.</p>
-
+    <p class="mt-8 mb-8">Na <b>Laredoute</b>, nossa missão é elevar a experiência de mobiliário para um novo patamar. Buscamos incessantemente a excelência no design, combinando estética contemporânea com a atemporalidade da tradição artesanal. Cada peça que produzimos conta uma história única, fundindo forma e função de maneira harmoniosa.</p>
+    <p class="mt-8 mb-8">Nossos móveis não são apenas objetos, são investimentos duradouros. Comprometemo-nos a oferecer qualidade inigualável, utilizando materiais premium e técnicas de fabricação de última geração. A madeira que escolhemos é meticulosamente selecionada, garantindo não apenas beleza visual, mas também resistência e durabilidade incomparáveis.</p>
+    <p>Descubra o prazer de possuir móveis que transcendem o ordinário. Na <b>Laredoute</b>, cada peça é uma expressão de sofisticação, qualidade e compromisso inabalável com a excelência. Estamos aqui para inspirar e elevar a arte de mobiliar lares e ambientes comerciais.</p>
 </div>
 <div class="container py-8 px-6 mx-auto w-full">
 <div class="w-full mx-auto px-6 flex flex-wrap">
