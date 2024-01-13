@@ -19,9 +19,7 @@ camera.lookAt(0, 0, 0);
 let raycaster = new THREE.Raycaster()
 let rato = new THREE.Vector2()
 
-let relogio = new THREE.Clock()
 let misturador = new THREE.AnimationMixer(cena)
-
 
 // Criar Ações
 let acao_abrePortaR = null
@@ -67,14 +65,6 @@ let renderer = new THREE.WebGLRenderer({canvas : canva});
 renderer.setSize(800, 600)
 renderer.shadowMap.enabled = true;
 
-// Criar Eixos
-//let eixos = new THREE.AxesHelper();
-//cena.add(eixos);
-
-// Criar Grelha
-//let grelha = new THREE.GridHelper();
-//cena.add(grelha);
-
 function pegarPrimeiro() {
  // console.log("candidatos", candidatos)
   if (candidatos.length>0) {
@@ -117,12 +107,7 @@ canva.onclick = function (evento) {
   var limites = evento.target.getBoundingClientRect()
   rato.x = 2 * (evento.clientX - limites.left) / parseInt(meuCanvas.style.width) - 1
   rato.y = 1 - 2 * (evento.clientY - limites.top) / parseInt(meuCanvas.style.height)
-
-  /*rato.x = (evento.clientX / 800) * 2 - 1   // se nao der meter window.innerWidth
-  rato.y = -(evento.clientY /600) * 2 + 1  // se nao der meter window.innerHeight
-  */
-
-  // invocar raycaster
+  
   pegarPrimeiro()
 }
 
@@ -137,7 +122,6 @@ function renderizar() {
 renderizar();
 controlos.addEventListener("change", renderizar);
 
-
 // Load do modelo 3D -> GLTFLoader
 let carregador = new GLTFLoader();
 carregador.load(
@@ -146,15 +130,14 @@ carregador.load(
       cena.add(gltf.scene);
       cena.traverse(function(elemento){
         if (elemento.isMesh) {
-          cena.getObjectByName(elemento.name).castShadow = true
-          cena.getObjectByName(elemento.name).receiveShadow = true
+          elemento.castShadow = true
+          elemento.receiveShadow = true
           
           //tinha else if aqui
           console.log(elemento)
           candidatos.push(elemento)
           console.log(candidatos)
           
-
           //Importação da Animação "abrePortaR"
           let clipe= THREE.AnimationClip.findByName(gltf.animations, 'abrePortaR');
           acao_abrePortaR = misturador.clipAction(clipe);
@@ -178,46 +161,35 @@ carregador.load(
           acao_abreGavetaL = misturador.clipAction(clipe);
           acao_abreGavetaL.setLoop(THREE.LoopOnce);
           acao_abreGavetaL.clampWhenFinished = true
-
-        
       }
       })
-
 });
 
 //Configuração de luzes
 //luz frente
-const luzPonto = new THREE.PointLight("white");  
-luzPonto.position.set(0, 2, 2);
-luzPonto.intensity = 2;
-cena.add(luzPonto);
-// auxiliar visual
-//const LightHelper1 = new THREE.PointLightHelper(luzPonto, 0.2);
-//cena.add(LightHelper1);
-
+const luzPonto1 = new THREE.PointLight("white");  
+luzPonto1.position.set(0, 2, 2);
+luzPonto1.intensity = 6;
 //luz trás
 const luzPonto2 = new THREE.PointLight("white");  
 luzPonto2.position.set(0, 2, -2);
-luzPonto2.intensity = 4;
-luzPonto2.castShadow=true
-
-cena.add(luzPonto2);
-
+luzPonto2.intensity = 6;
 //luz lado direito
 const luzDirecional1 = new THREE.DirectionalLight("white");     
-luzDirecional1.position.set(3, 2, 0); //aponta na direção de (0, 0, 0)
-luzDirecional1.intensity = 2;
-cena.add(luzDirecional1);
-// auxiliar visual
-//const LightHelper2 = new THREE.DirectionalLightHelper(luzDirecional1, 0.2);
-//cena.add(LightHelper2);
-
+luzDirecional1.position.set(3, 2.5, 0); //aponta na direção de (0, 0, 0)
+luzDirecional1.intensity = 4; 
+luzDirecional1.castShadow = true;
+const LightHelper2 = new THREE.DirectionalLightHelper(luzDirecional1, 0.2);
+cena.add(LightHelper2);
 //luz lado esquerdo
 const luzDirecional2 = new THREE.DirectionalLight("white");     
 luzDirecional2.position.set(-3, 2, 0); //aponta na direção de (0, 0, 0)
-luzDirecional2.intensity = 2;
-cena.add(luzDirecional2);
+luzDirecional2.intensity = 3;
 
+cena.add(luzPonto1);
+cena.add(luzPonto2);
+cena.add(luzDirecional1);
+cena.add(luzDirecional2);
 
 //ANIMAÇÃO
 // CLOCK
@@ -277,7 +249,7 @@ color_wood.addEventListener("click", function(event){
     } else if(selectedColor=="wood3"){
       for (let index = 0; index < candidatos.length-1; index++) {
         if(candidatos[index].material.name=="Wood"){
-          candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/madeira_escura.jpg");
+          candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/madeira_es ra.jpg");
         }else if(candidatos[index].material.name=="Wicker"){
           candidatos[index].material.map=new THREE.TextureLoader().load("./model/materials/Wicker2_Color_1K.png");
         }
@@ -285,7 +257,6 @@ color_wood.addEventListener("click", function(event){
     }
 }
 })
-
 
 //CONTROLO do LOOP das ANIMAÇÕES
 menuLoop.addEventListener("change", function() {
@@ -300,25 +271,21 @@ menuLoop.addEventListener("change", function() {
             acao_abreGavetaL.setLoop(THREE.LoopOnce);
             acao_abreGavetaL.clampWhenFinished = true
             break;
-
         case "2":
             acao_abrePortaR.setLoop(THREE.LoopRepeat);
             acao_abrePortaL.setLoop(THREE.LoopRepeat);
             acao_abreGavetaR.setLoop(THREE.LoopRepeat);
             acao_abreGavetaL.setLoop(THREE.LoopRepeat);
-
             break;
         case "3":
             acao_abrePortaR.setLoop(THREE.LoopPingPong);
             acao_abrePortaL.setLoop(THREE.LoopPingPong);
             acao_abreGavetaR.setLoop(THREE.LoopPingPong);
             acao_abreGavetaL.setLoop(THREE.LoopPingPong);
-
             break;
         default:
     }
 });
-
 
 //AÇÕES PORTA DIREITA
 // Abrir/fechar PORTA DIREITA
@@ -350,12 +317,8 @@ btn_pause_PortaR.onclick = function () {
     }
 }
 
-
-
-
 //AÇÕES PORTA ESQUERDA
 // Abrir/fechar PORTA ESQUERDA
-
 btn_play_PortaL.onclick = function () {
   abrir_PortaL();
 };
@@ -383,10 +346,6 @@ btn_pause_PortaL.onclick = function () {
     acao_abrePortaL.play()
   }
 }
-
-
-
-
 
 //AÇÕES GAVETA DIREITA
 // Abrir/fechar GAVETA DIREITA
@@ -417,8 +376,6 @@ btn_pause_GavetaR.onclick = function () {
     acao_abreGavetaR.play()
   }
 }
-
-
 
 //AÇÕES GAVETA ESQUERDA
 // Abrir/fechar GAVETA ESQUERDA
